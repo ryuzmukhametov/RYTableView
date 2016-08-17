@@ -10,54 +10,96 @@
 #import "MyTableViewCell.h"
 
 @interface ViewController ()
-
+@property(nonatomic, strong) NSArray *headers;
+@property(nonatomic, strong) NSMutableArray *colors;
+@property(nonatomic, strong) NSMutableArray *filteredColors;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
     
-    // Dispose of any resources that can be recreated.
+    self.colors = [[NSMutableArray alloc] init];
+    [self.colors addObject:[[NSMutableArray alloc] initWithArray:@[@"Red", @"Green", @"Blue"]]];
+    [self.colors addObject:[[NSMutableArray alloc] initWithArray:@[@"White", @"Black", @"Grey"]]];
+    [self.colors addObject:[[NSMutableArray alloc] initWithArray:@[@"Cyan", @"Magenta", @"Yello", @"Key"]]];
+    
+    self.headers = @[@"RGB", @"WBG", @"CMYK"];
+    
+    self.filteredColors = [[NSMutableArray alloc] init];
+    
 }
 
 
-#pragma mark - UITableViewDataSource 
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.tableView == tableView) {
+        return self.colors.count;
+    } else {
+        return 1;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    if (self.tableView == tableView) {
+        return [self.colors[section] count];
+    } else {
+        return self.filteredColors.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.label1.text = [NSString stringWithFormat:@"%ld %ld", indexPath.section, indexPath.row];
-    cell.label2.text = @"subtitle";
+    MyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+    NSString *text;
+    if (self.tableView == tableView) {
+        text = self.colors[indexPath.section][indexPath.row];
+    } else {
+        text = self.filteredColors[indexPath.row];
+    }
+    
+    cell.label1.text = text;
+    cell.label2.text = @(text.hash).stringValue;
     return cell;
 }
 
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
+#pragma mark - UITableViewDelegate
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"title %ld", (long)section];
+    if (self.tableView == tableView) {
+        return self.headers[section];
+    } else {
+        return @"";
+    }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-//    [self filterContentForSearchText:searchString
-//                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                                      objectAtIndex:[self.searchDisplayController.searchBar
-//                                                     selectedScopeButtonIndex]]];
-    
+#pragma mark - UISearchDisplayDelegate
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+
+    NSLog(@"search string is %@", searchString);
+    [self filterContentForSearchString:searchString];
     return YES;
+}
+
+#pragma mark - Aux
+- (void)filterContentForSearchString:(NSString*)searchString {
+    searchString = [searchString lowercaseString];
+    NSMutableArray *filteredColors = [[NSMutableArray alloc] init];
+    for (NSInteger section = 0; section < self.colors.count; ++section) {
+        for (NSInteger row = 0; row < [self.colors[section] count]; ++row) {
+            NSString *color = [self.colors[section][row] lowercaseString];
+            
+            if ([color rangeOfString:searchString].location != NSNotFound) {
+                [filteredColors addObject:color];
+            }
+        }
+    }
+    self.filteredColors = filteredColors;
 }
 
 @end

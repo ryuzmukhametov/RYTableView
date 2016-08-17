@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A67FE7B1D64D6800067326A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A67FE7A1D64D6800067326A /* Default-568h@2x.png */; };
 		4E4FC59E1D64A978006E9B26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4FC59D1D64A978006E9B26 /* main.m */; };
 		4E4FC5A11D64A978006E9B26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4FC5A01D64A978006E9B26 /* AppDelegate.m */; };
 		4E4FC5A41D64A978006E9B26 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4FC5A31D64A978006E9B26 /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A67FE7A1D64D6800067326A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4E4FC5991D64A977006E9B26 /* RYTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RYTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4FC59D1D64A978006E9B26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4E4FC59F1D64A978006E9B26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 		4E4FC5901D64A977006E9B26 = {
 			isa = PBXGroup;
 			children = (
+				4A67FE7A1D64D6800067326A /* Default-568h@2x.png */,
 				4E4FC59B1D64A978006E9B26 /* RYTableView */,
 				4E4FC59A1D64A977006E9B26 /* Products */,
 			);
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E4FC5AC1D64A978006E9B26 /* LaunchScreen.storyboard in Resources */,
+				4A67FE7B1D64D6800067326A /* Default-568h@2x.png in Resources */,
 				4E4FC5A91D64A978006E9B26 /* Assets.xcassets in Resources */,
 				4E4FC5A71D64A978006E9B26 /* Main.storyboard in Resources */,
 			);
@@ -220,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -258,7 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -306,6 +310,7 @@
 				4E4FC5B21D64A978006E9B26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
